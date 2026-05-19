@@ -1,4 +1,5 @@
-export class Circle {
+import { Actor } from "./actor.js";
+export class Circle implements Actor {
     private x: number;
     private y: number;
     private radius: number = 40;
