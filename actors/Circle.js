@@ -1,19 +1,20 @@
+import { RightMovement } from "../movements/RightMovement.js";
 export class Circle {
     constructor(x, y, radius) {
         this.radius = 40;
-        this.x = x;
-        this.y = y;
+        this.movement = new RightMovement(x, y, 100);
         if (radius !== undefined) {
             this.radius = radius;
         }
     }
     render(ctx) {
-        console.log("in circle");
         ctx.fillStyle = "#66aaff";
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.beginPath();
+        ctx.arc(this.movement.getX(), this.movement.getY(), // ← HIER: anpassen falls dein Movement anders heißt
+        this.radius, 0, Math.PI * 2);
         ctx.fill();
     }
     update(deltaTime) {
-        this.y += 100 * deltaTime; // Move 100 pixels per second
+        this.movement.update(deltaTime, 10);
     }
 }

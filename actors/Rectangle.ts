@@ -1,19 +1,28 @@
+import { MoveStrategy } from "../movements/MoveStrategy.js";
+import { Actor } from "./Actor.js";
 
-export class Rectangle{
-    private x: number;
-    private y: number;
-    private width: number = 40;
-    private height: number = 40;
+export class Rectangle implements Actor {
+  private movement: MoveStrategy;
+  private width: number;
+  private height: number;
 
-    constructor(x: number, y: number){
-        this.x = x;
-        this.y = y;
-}
-render(ctx: CanvasRenderingContext2D): void {
-    ctx.fillStyle = "#66aaff";
-    ctx.fillRect(this.x, this.y, this.width, this.height);
-}
-update(deltaTime: number): void {
-    this.x += 100 * deltaTime; // Move 100 pixels per second
- }
+  constructor(movement: MoveStrategy, width: number, height: number) {
+    this.movement = movement;
+    this.width = width;
+    this.height = height;
+  }
+
+  render(ctx: CanvasRenderingContext2D): void {
+    ctx.fillStyle = "#FF66aa";
+    ctx.fillRect(
+      this.movement.getX(),
+      this.movement.getY(),
+      this.width,
+      this.height
+    );
+  }
+
+  update(deltaTime: number): void {
+    this.movement.update(deltaTime);
+  }
 }

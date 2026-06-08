@@ -2,34 +2,30 @@
 import { Game, GameFramework } from "./GameFramework.js";
 import { Rectangle } from "./actors/Rectangle.js";
 import { Circle } from "./actors/Circle.js";
-import { Actor } from "./actors/actor.js";
+import { Actor } from "./actors/Actor.js";
 import { Tree } from "./actors/Tree.js";
+import { RightMovement } from "./movements/RightMovement.js";
+
 
 // start using objects
 class MyGame extends Game {
   private actors: Actor[] = [];
 
   init(): void {
-    console.log("Game started!");
+    const r1 = new Rectangle(new RightMovement(20, 20), 60, 60);
+    const r2 = new Rectangle(new RightMovement(100, 100), 20, 20);
+    const r3 = new Rectangle(new RightMovement(200, 150), 100, 100);
 
-    // Rectangle(x, y, width, height)
-    const r1 = new Rectangle(20, 20);
-    const r2 = new Rectangle(100, 100);
-
-    // Circle(x, y, radius)
     this.actors.push(
-      new Circle(200, 200, 30),
-      new Circle(300, 300, 50),
-      new Circle(400, 400, 20)
+      new Circle(new RightMovement(100, 200), 10),
+      new Circle(new RightMovement(100, 100), 100),
+      new Circle(new RightMovement(100, 100), 30)
     );
 
-    // Trees
-    this.actors.push(
-      r1,
-      r2,
-      new Tree(500, 500, 80),
-      new Tree(100, 60, 40)
-    );
+    this.actors.push(r1, r2, r3);
+
+    this.actors.push(new Tree(50, 250));
+    this.actors.push(new Tree(100, 450));
   }
 
   update(deltaTime: number): void {
@@ -44,3 +40,4 @@ class MyGame extends Game {
 const game = new MyGame();
 const framework = new GameFramework(game, 800, 600);
 framework.start();
+
