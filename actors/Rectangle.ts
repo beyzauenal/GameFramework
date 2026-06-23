@@ -1,5 +1,5 @@
 import { MoveStrategy } from "../movements/MoveStrategy.js";
-import { Actor } from "./Actor.js";
+import { Actor } from "./actor.js";
 
 export class Rectangle implements Actor {
   private movement: MoveStrategy;

@@ -1,8 +1,8 @@
 // ===============================
 // PaymentStrategy Interface
 // ===============================
-public interface PaymentStrategy {
-    void pay(double amount);
+export interface PaymentStrategy {
+    pay(amount: number): void;
 }
 
 // ===============================
@@ -10,62 +10,55 @@ public interface PaymentStrategy {
 // ===============================
 
 // Kreditkarte
-public class CreditCardPayment implements PaymentStrategy {
-    @Override
-    public void pay(double amount) {
-        System.out.println("Zahlung mit Kreditkarte: " + amount + "€");
+export class CreditCardPayment implements PaymentStrategy {
+    pay(amount: number): void {
+        console.log(`Zahlung mit Kreditkarte: ${amount}€`);
     }
 }
 
 // PayPal
-public class PayPalPayment implements PaymentStrategy {
-    @Override
-    public void pay(double amount) {
-        System.out.println("Zahlung mit PayPal: " + amount + "€");
+export class PayPalPayment implements PaymentStrategy {
+    pay(amount: number): void {
+        console.log(`Zahlung mit PayPal: ${amount}€`);
     }
 }
 
 // Banküberweisung
-public class BankTransferPayment implements PaymentStrategy {
-    @Override
-    public void pay(double amount) {
-        System.out.println("Zahlung per Banküberweisung: " + amount + "€");
+export class BankTransferPayment implements PaymentStrategy {
+    pay(amount: number): void {
+        console.log(`Zahlung per Banküberweisung: ${amount}€`);
     }
 }
 
 // ===============================
 // PaymentContext
 // ===============================
-public class PaymentContext {
+export class PaymentContext {
+    private strategy: PaymentStrategy;
 
-    private PaymentStrategy strategy;
-
-    public PaymentContext(PaymentStrategy strategy) {
+    constructor(strategy: PaymentStrategy) {
         this.strategy = strategy;
     }
 
-    public void setStrategy(PaymentStrategy strategy) {
+    setStrategy(strategy: PaymentStrategy): void {
         this.strategy = strategy;
     }
 
-    public void processPayment(double amount) {
-        strategy.pay(amount);
+    processPayment(amount: number): void {
+        this.strategy.pay(amount);
     }
 }
 
 // ===============================
 // Main – Testprogramm
 // ===============================
-public class Main {
-    public static void main(String[] args) {
+export function runPaymentExample(): void {
+    const context = new PaymentContext(new CreditCardPayment());
+    context.processPayment(49.99);
 
-        PaymentContext context = new PaymentContext(new CreditCardPayment());
-        context.processPayment(49.99);
+    context.setStrategy(new PayPalPayment());
+    context.processPayment(19.99);
 
-        context.setStrategy(new PayPalPayment());
-        context.processPayment(19.99);
-
-        context.setStrategy(new BankTransferPayment());
-        context.processPayment(99.00);
-    }
+    context.setStrategy(new BankTransferPayment());
+    context.processPayment(99.0);
 }

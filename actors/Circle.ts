@@ -1,4 +1,4 @@
-import { Actor } from "./Actor.js";
+import { Actor } from "./actor.js";
 import { MoveStrategy } from "../movements/MoveStrategy.js";
 
 export class Circle implements Actor {

@@ -1,4 +1,4 @@
-import { Actor } from "./Actor.js";
+import { Actor } from "./actor.js";
 
 export class Tree implements Actor {
   constructor(private x: number, private y: number, private size: number = 60) {}
