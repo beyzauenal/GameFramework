@@ -3,7 +3,7 @@ export class RightMovement implements MoveStrategy {
     constructor(private x: number, private y: number, private speed: number = 100) {}
 
     getY(): number {
-        throw new Error("Method not implemented.");
+        return this.y;
     }
 
     update(deltaTime: number): void {

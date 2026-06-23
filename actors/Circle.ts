@@ -1,7 +1,8 @@
 import { Actor } from "./actor.js";
 import { MoveStrategy } from "../movements/MoveStrategy.js";
+import { Observer } from "../observer/Observer.js";
 
-export class Circle implements Actor {
+export class Circle implements Actor, Observer {
     private radius: number = 40;
 
     constructor(private movement: MoveStrategy, radius?: number) {
@@ -25,5 +26,9 @@ export class Circle implements Actor {
 
     update(deltaTime: number): void {
         this.movement.update(deltaTime);
+    }
+
+    inform (event:string, data?: any): void {
+        console.log("i am a circle"+ event + "data" + data);
     }
 }

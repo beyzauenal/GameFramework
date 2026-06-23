@@ -2,14 +2,16 @@
 import { Game, GameFramework } from "./GameFramework.js";
 import { Rectangle } from "./actors/Rectangle.js";
 import { Circle } from "./actors/Circle.js";
-import { Actor } from "./actors/Actor.js";
+ import { Actor } from "./actors/actor.js";
 import { Tree } from "./actors/Tree.js";
 import { RightMovement } from "./movements/RightMovement.js";
-
 
 // start using objects
 class MyGame extends Game {
   private actors: Actor[] = [];
+
+
+
 
   init(): void {
     const r1 = new Rectangle(new RightMovement(20, 20), 60, 60);
