@@ -5,7 +5,10 @@ export class LeftMovement implements MoveStrategy {
     }
     constructor(private x: number, private y: number, private speed: number) {}
     update(deltaTime: number): void {
-        this.x -= this.speed * deltaTime; // Move left by speed pixels per second
+        this.x -= this.speed * deltaTime;
+        if (this.x < 0) {
+            this.x = 800;
+        }
     }
     getX(): number {
         return this.x;

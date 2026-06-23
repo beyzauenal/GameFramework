@@ -7,7 +7,10 @@ export class RightMovement implements MoveStrategy {
     }
 
     update(deltaTime: number): void {
-        this.x += this.speed * deltaTime; // Move the actor to the right
+        this.x += this.speed * deltaTime; 
+        if (this.x > 800) {
+            this.x = 0;
+        }
     }
 
     getX(): number {
